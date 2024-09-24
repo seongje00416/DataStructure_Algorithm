@@ -1,20 +1,38 @@
 package DataStructure.QueueStack;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Vector;
 
 public class Queue {
 
-    public static void main ( String[] args ) {
+    public static void main ( String[] args ) throws IOException {
         MyQueue myQueue = new MyQueue();
         BufferedReader br = new BufferedReader( new InputStreamReader( System.in ) );
         boolean flag = true;
 
         while( flag ){
-            System.out.println( "1. Add Number / 2. Get Number" );
-
+            System.out.println( "1. Add Number / 2. Get Number / 3. Information of Queue / 4. Close" );
+            switch( Integer.parseInt( br.readLine() ) ){
+                case 1:
+                    myQueue.enQueue( Integer.parseInt( br.readLine() ) );
+                    break;
+                case 2:
+                    System.out.println( myQueue.deQueue() );
+                    break;
+                case 3:
+                    System.out.print( "Rear: ");
+                    myQueue.showRear();
+                    System.out.print( "Front: " );
+                    myQueue.showFront();
+                    break;
+                case 4:
+                    flag = false;
+                    break;
+            }
         }
+        br.close();
     }
 
     static class MyQueue {
